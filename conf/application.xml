@@ -7,7 +7,7 @@
 
 	<module>
 		<web>
-			<web-uri>com.exampe.phrs.war</web-uri>
+			<web-uri>com.example.phrs.war</web-uri>
 			<context-root>phrs</context-root>
 		</web>
 	</module>
