@@ -1,9 +1,0 @@
-<mockup version="1.0" skin="sketch" measuredW="1241" measuredH="611" mockupW="1066" mockupH="608">
-  <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="175" y="3" w="1066" h="608" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>P%20Hotel%20Reservation%20System%0Ahttp%3A//localhost%3A8080/phrs/webapp</text>
-      </controlProperties>
-    </control>
-  </controls>
-</mockup>
