@@ -12,7 +12,10 @@
 
         launch: function () {
             console.log('running login');
-            //this.login();
+
+            var hash = CryptoJS.SHA3("Message");
+            console.log('SHA-3 Test: ' + hash);
+            Ext.create('PHRS.view.Viewport');
         }
     });
 })();
