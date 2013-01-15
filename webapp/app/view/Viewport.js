@@ -34,7 +34,6 @@ Ext.define('PHRS.view.Viewport', {
 				xtype : 'tabpanel', // TabPanel itself has no title
 				activeTab : 0, // First tab active by default
 			    html: 'test'
-				}
 			}
 		];
 		
