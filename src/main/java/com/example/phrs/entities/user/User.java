@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -204,7 +205,7 @@ public class User extends PhrsEntity {
 	 * 
 	 * @return the reservationList
 	 */
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	public List<Reservation> getReservationList() {
 
@@ -213,6 +214,17 @@ public class User extends PhrsEntity {
 		}
 
 		return this.reservationList;
+	}
+
+	/**
+	 * Setter for the reservationList.
+	 * 
+	 * @param reservationList
+	 *            the reservationList to set
+	 */
+	void setReservationList(List<Reservation> reservationList) {
+
+		this.reservationList = reservationList;
 	}
 
 	@Override

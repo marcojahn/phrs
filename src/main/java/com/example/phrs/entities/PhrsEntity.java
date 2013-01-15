@@ -56,7 +56,7 @@ public class PhrsEntity implements Serializable {
 	 * @return the id
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	public Long getId() {
 

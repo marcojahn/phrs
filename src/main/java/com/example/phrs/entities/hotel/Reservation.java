@@ -10,7 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.example.phrs.entities.PhrsEntity;
@@ -31,6 +31,8 @@ public class Reservation extends PhrsEntity {
 	private Hotel hotel;
 
 	private boolean hotelChanged;
+
+	private String comment;
 
 	private ReservationStatus status = ReservationStatus.CREATED;
 
@@ -61,7 +63,7 @@ public class Reservation extends PhrsEntity {
 	 * 
 	 * @return the hotel
 	 */
-	@ManyToMany(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "hotel_id")
 	public Hotel getHotel() {
 
@@ -99,6 +101,28 @@ public class Reservation extends PhrsEntity {
 	public void setHotelChanged(boolean hotelChanged) {
 
 		this.hotelChanged = hotelChanged;
+	}
+
+	/**
+	 * Getter for the comment.
+	 * 
+	 * @return the comment
+	 */
+	@Column(length = 1000)
+	public String getComment() {
+
+		return this.comment;
+	}
+
+	/**
+	 * Setter for the comment.
+	 * 
+	 * @param comment
+	 *            the comment to set
+	 */
+	public void setComment(String comment) {
+
+		this.comment = comment;
 	}
 
 	/**
