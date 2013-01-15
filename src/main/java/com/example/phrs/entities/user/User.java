@@ -222,7 +222,7 @@ public class User extends PhrsEntity {
 	 * @param reservationList
 	 *            the reservationList to set
 	 */
-	void setReservationList(List<Reservation> reservationList) {
+	public void setReservationList(List<Reservation> reservationList) {
 
 		this.reservationList = reservationList;
 	}
