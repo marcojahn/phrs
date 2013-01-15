@@ -1,5 +1,7 @@
 <project name="com.example.phrs" basedir="..">
+	
 	<property file="./build/build.properties" />
+	
 	<target name="init">
 		<mkdir dir="${dir.out}" />
 		<mkdir dir="${dir.out.main}" />
@@ -53,6 +55,7 @@
 			</fileset>
 		</ear>
 	</target>
+	
 	<target name="deploy.jboss" depends="ear" description="Deploys the enterprise archive to jboss." unless="${JBOSS_DEPLOY}">
 		<copy todir="${JBOSS_DEPLOY}">
 			<fileset dir="${dir.out.dist}">
@@ -61,6 +64,7 @@
 		</copy>
 		<touch file="${ant.project.name}.ear" />
 	</target>
+	
 	<target name="undeploy.jboss" description="Undeploys the enterprise archive from jboss." unless="${JBOSS_DEPLOY}">
 		<delete dir="${JBOSS_DEPLOY}">
 			<include name="${ant.project.name}.ear" />

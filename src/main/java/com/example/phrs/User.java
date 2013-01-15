@@ -4,11 +4,8 @@
 package com.example.phrs;
 
 /**
- * 
- * 
  * @author Nicolas Moser
- *
  */
 public class User {
- 
+
 }
