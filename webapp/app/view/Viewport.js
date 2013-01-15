@@ -8,6 +8,7 @@ Ext.define('PHRS.view.Viewport', {
 	layout: 'border',
 	
 	initComponent: function () {
+        console.log('building viewport');
 		this.items = [
 	        {
 				region : 'west',
