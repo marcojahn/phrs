@@ -14,7 +14,7 @@
     </control>
     <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="235" y="152" w="134" h="27" measuredW="131" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
-        <state>selected</state>
+        <state>up</state>
         <text>Anfragen%20einsehen</text>
       </controlProperties>
     </control>
@@ -25,7 +25,7 @@
     </control>
     <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="235" y="224" w="134" h="27" measuredW="105" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <state>up</state>
+        <state>selected</state>
         <text>Hotels%20pflegen</text>
       </controlProperties>
     </control>
