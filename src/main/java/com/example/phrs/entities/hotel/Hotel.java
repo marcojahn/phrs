@@ -43,7 +43,7 @@ public class Hotel extends PhrsEntity {
 	 * 
 	 * @return the name
 	 */
-	@Column
+	@Column(nullable = false)
 	public String getName() {
 
 		return this.name;

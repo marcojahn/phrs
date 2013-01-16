@@ -21,7 +21,7 @@ import javax.persistence.Version;
  * @author Nicolas Moser
  */
 @MappedSuperclass
-public class PhrsEntity implements Serializable {
+public abstract class PhrsEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

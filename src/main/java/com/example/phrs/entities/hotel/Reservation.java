@@ -8,7 +8,9 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -30,7 +32,7 @@ public class Reservation extends PhrsEntity {
 
 	private Hotel hotel;
 
-	private boolean hotelChanged;
+	private boolean hotelChanged = false;
 
 	private String comment;
 
@@ -41,7 +43,7 @@ public class Reservation extends PhrsEntity {
 	 * 
 	 * @return the date
 	 */
-	@Column
+	@Column(nullable = false)
 	public Date getDate() {
 
 		return this.date;
@@ -63,8 +65,8 @@ public class Reservation extends PhrsEntity {
 	 * 
 	 * @return the hotel
 	 */
-	@ManyToOne(cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "hotel_id")
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.DETACH }, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "hotel_id", nullable = false)
 	public Hotel getHotel() {
 
 		return this.hotel;
@@ -131,7 +133,7 @@ public class Reservation extends PhrsEntity {
 	 * @return the status
 	 */
 	@Column
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	public ReservationStatus getStatus() {
 
 		return this.status;

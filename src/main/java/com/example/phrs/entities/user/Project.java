@@ -29,7 +29,7 @@ public class Project extends PhrsEntity {
 	 * 
 	 * @return the name
 	 */
-	@Column
+	@Column(nullable = false)
 	public String getName() {
 
 		return this.name;
@@ -51,7 +51,7 @@ public class Project extends PhrsEntity {
 	 * 
 	 * @return the erpId
 	 */
-	@Column
+	@Column(nullable = false)
 	public String getErpId() {
 
 		return this.erpId;

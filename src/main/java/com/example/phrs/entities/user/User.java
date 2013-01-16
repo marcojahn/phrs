@@ -9,6 +9,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,7 +35,7 @@ public class User extends PhrsEntity {
 
 	private String password;
 
-	private UserRole role;
+	private UserRole role = UserRole.USER;
 
 	private String email;
 
@@ -50,7 +52,7 @@ public class User extends PhrsEntity {
 	 * 
 	 * @return the userName
 	 */
-	@Column
+	@Column(nullable = false)
 	public String getUserName() {
 
 		return this.userName;
@@ -72,7 +74,7 @@ public class User extends PhrsEntity {
 	 * 
 	 * @return the password
 	 */
-	@Column
+	@Column(nullable = false)
 	public String getPassword() {
 
 		return this.password;
@@ -94,7 +96,8 @@ public class User extends PhrsEntity {
 	 * 
 	 * @return the role
 	 */
-	@Column
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	public UserRole getRole() {
 
 		return this.role;
@@ -116,7 +119,7 @@ public class User extends PhrsEntity {
 	 * 
 	 * @return the email
 	 */
-	@Column
+	@Column(nullable = false)
 	public String getEmail() {
 
 		return this.email;
@@ -182,8 +185,8 @@ public class User extends PhrsEntity {
 	 * 
 	 * @return the project
 	 */
-	@ManyToOne(cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "project_id")
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.DETACH }, fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name = "project_id", nullable = true)
 	public Project getProject() {
 
 		return this.project;
