@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -22,7 +23,7 @@ import com.example.phrs.entities.user.User;
  * 
  * @author Nicolas Moser
  */
-@Path("/user")
+@Path("/user/v1")
 public class UserRestServiceV1 {
 
 	@Inject
@@ -63,6 +64,14 @@ public class UserRestServiceV1 {
 	public User createUser(User user) {
 
 		return this.userService.persistUser(user);
+	}
+
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public User removeUser(User user) {
+
+		return this.userService.removeUser(user);
 	}
 
 }
