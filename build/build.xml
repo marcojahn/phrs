@@ -1,26 +1,77 @@
+<!--
+ ############################################################################
+ ##
+ ## Project:	    PHRS 
+ ## Author:		    Nicolas Moser
+ ## 
+ ## Version:  		1
+ ## 
+ ## Build file for project PHRS
+ ##
+ ############################################################################
+ -->
 <project name="com.example.phrs" basedir="..">
 	
 	<property file="./build/build.properties" />
 	
+	<!-- 
+	##################################################################################
+	##
+	## Initialises the Build Process.
+	##
+	##################################################################################
+	-->
 	<target name="init">
 		<mkdir dir="${dir.out}" />
 		<mkdir dir="${dir.out.main}" />
 		<mkdir dir="${dir.out.test}" />
 		<mkdir dir="${dir.out.dist}" />
 	</target>
-	<target name="clean" description="Cleans the out directory.">
+	
+	<!-- 
+	##################################################################################
+	##
+	## Cleans the target directory.
+	##
+	##################################################################################
+	-->
+	<target name="clean" description="Cleans the target directory.">
 		<delete dir="${dir.out}" />
 	</target>
+	
+	<!-- 
+	##################################################################################
+	##
+	## Main Classpath.
+	##
+	##################################################################################
+	-->
 	<path id="classpath.main">
 		<fileset dir="${dir.lib}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
+	
+	<!-- 
+	##################################################################################
+	##
+	## Test Classpath.
+	##
+	##################################################################################
+	-->
 	<path id="classpath.test">
 		<fileset dir="${dir.lib}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
+	
+	<!-- 
+	##################################################################################
+	##
+	## Compiles the Main sources.
+	##
+	##################################################################################
+	-->
 	<target name="compile.main" depends="clean, init" description="Compile the main sources">
 		<javac classpathref="classpath.main" debug="true" destdir="${dir.out.main}" srcdir="${dir.src.main}/java" includeantruntime="true" />
 		<copy todir="${dir.out.main}/META-INF">
@@ -29,11 +80,35 @@
 			</fileset>
 		</copy>
 	</target>
+
+	<!-- 
+	##################################################################################
+	##
+	## Compiles the Test sources.
+	##
+	##################################################################################
+	-->
 	<target name="compile.test" depends="init">
 		<javac classpathref="classpath.test" debug="true" destdir="${dir.out.test}" srcdir="${dir.src.test}/java" />
 	</target>
+
+	<!-- 
+	##################################################################################
+	##
+	## Creates the MANIFEST.MF file.
+	##
+	##################################################################################
+	-->
 	<target name="manifest">
 	</target>
+
+	<!-- 
+	##################################################################################
+	##
+	## Creates the Web Archive (WAR).
+	##
+	##################################################################################
+	-->
 	<target name="war" depends="compile.main, manifest" description="Creates the Web Archive.">
 		<war destfile="${dir.out.dist}/${ant.project.name}.war" webxml="${dir.conf}/web.xml">
 			<classes dir="${dir.out.main}">
@@ -48,6 +123,14 @@
 			</fileset>
 		</war>
 	</target>
+
+	<!-- 
+	##################################################################################
+	##
+	## Creates the Enterprise Archive (EAR).
+	##
+	##################################################################################
+	-->
 	<target name="ear" depends="war" description="Creates the Enterprise Archive.">
 		<ear destfile="${dir.out.dist}/${ant.project.name}.ear" appxml="${dir.conf}/application.xml">
 			<fileset dir="${dir.out.dist}">
@@ -55,7 +138,14 @@
 			</fileset>
 		</ear>
 	</target>
-	
+
+	<!-- 
+	##################################################################################
+	##
+	## Copies the EAR to ${JBOSS_DEPLOY} directory.
+	##
+	##################################################################################
+	-->
 	<target name="deploy.jboss" depends="ear" description="Deploys the enterprise archive to jboss." unless="${JBOSS_DEPLOY}">
 		<copy todir="${JBOSS_DEPLOY}">
 			<fileset dir="${dir.out.dist}">
@@ -64,7 +154,14 @@
 		</copy>
 		<touch file="${ant.project.name}.ear" />
 	</target>
-	
+
+	<!-- 
+	##################################################################################
+	##
+	## Removes the EAR from ${JBOSS_DEPLOY} directory.
+	##
+	##################################################################################
+	-->
 	<target name="undeploy.jboss" description="Undeploys the enterprise archive from jboss." unless="${JBOSS_DEPLOY}">
 		<delete dir="${JBOSS_DEPLOY}">
 			<include name="${ant.project.name}.ear" />
@@ -72,4 +169,5 @@
 			<include name="${ant.project.name}.ear.deployed" />
 		</delete>
 	</target>
+	
 </project>
