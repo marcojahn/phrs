@@ -57,7 +57,7 @@ public abstract class PhrsEntity implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(nullable = false)
 	public Long getId() {
 
 		return this.id;
@@ -79,8 +79,8 @@ public abstract class PhrsEntity implements Serializable {
 	 * 
 	 * @return the version
 	 */
-	@Column
 	@Version
+	@Column(nullable = false)
 	public Long getVersion() {
 
 		return this.version;

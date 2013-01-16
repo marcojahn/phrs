@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="lib/javax.persistence.jar"/>
 	<classpathentry kind="lib" path="lib/javax.ws.rs.jar"/>
 	<classpathentry kind="lib" path="lib/log4j.jar"/>
+	<classpathentry kind="lib" path="lib/resteasy-jaxrs.jar"/>
 	<classpathentry kind="output" path="target/ide"/>
 </classpath>

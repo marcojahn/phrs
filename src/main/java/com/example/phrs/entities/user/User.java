@@ -209,7 +209,7 @@ public class User extends PhrsEntity {
 	 * @return the reservationList
 	 */
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	public List<Reservation> getReservationList() {
 
 		if (this.reservationList == null) {
