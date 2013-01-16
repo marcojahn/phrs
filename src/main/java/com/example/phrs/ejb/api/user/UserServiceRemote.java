@@ -1,7 +1,7 @@
 /*
  * Copyright 2013 Marco Jahn & Nicolas Moser
  */
-package com.example.phrs.ejb.user;
+package com.example.phrs.ejb.api.user;
 
 import javax.ejb.Remote;
 

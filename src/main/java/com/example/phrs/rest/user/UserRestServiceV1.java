@@ -14,7 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.example.phrs.ejb.user.UserService;
+import com.example.phrs.ejb.api.user.UserService;
 import com.example.phrs.entities.user.User;
 
 /**

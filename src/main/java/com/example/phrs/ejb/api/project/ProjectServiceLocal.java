@@ -1,16 +1,16 @@
 /*
  * Copyright 2013 Marco Jahn & Nicolas Moser
  */
-package com.example.phrs.ejb.user;
+package com.example.phrs.ejb.api.project;
 
 import javax.ejb.Local;
 
 /**
- * UserServiceLocal
+ * ProjectServiceLocal
  * 
  * @author Nicolas Moser
  */
 @Local
-public interface UserServiceLocal extends UserService {
+public interface ProjectServiceLocal extends ProjectService {
 
 }
