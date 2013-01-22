@@ -15,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.ejb.api.hotel.HotelService;
 import com.example.phrs.entities.hotel.Hotel;
 
@@ -32,7 +33,7 @@ public class HotelRestServiceV1 {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Hotel getHotel(@PathParam("id") Long id) {
+	public Hotel getHotel(@PathParam("id") Long id) throws ServiceException {
 
 		Hotel hotel = this.hotelService.findHotel(id);
 
@@ -41,7 +42,7 @@ public class HotelRestServiceV1 {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Hotel> getHotelList() {
+	public List<Hotel> getHotelList() throws ServiceException {
 
 		List<Hotel> hotels = this.hotelService.findAllHotels();
 		return hotels;
@@ -50,7 +51,7 @@ public class HotelRestServiceV1 {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Hotel createHotel(Hotel hotel) {
+	public Hotel createHotel(Hotel hotel) throws ServiceException {
 
 		return this.hotelService.persistHotel(hotel);
 	}
@@ -58,7 +59,7 @@ public class HotelRestServiceV1 {
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Hotel removeHotel(Hotel hotel) {
+	public Hotel removeHotel(Hotel hotel) throws ServiceException {
 
 		return this.hotelService.removeHotel(hotel);
 	}

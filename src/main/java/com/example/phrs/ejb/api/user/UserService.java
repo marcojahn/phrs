@@ -5,6 +5,7 @@ package com.example.phrs.ejb.api.user;
 
 import java.util.List;
 
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.base.exception.SecurityException;
 import com.example.phrs.ejb.api.PhrsService;
 import com.example.phrs.entities.user.User;
@@ -36,14 +37,14 @@ public interface UserService extends PhrsService {
 	 *            the entity id
 	 * @return the user instance
 	 */
-	User findUser(Long id);
+	User findUser(Long id) throws ServiceException;
 
 	/**
 	 * Find all users.
 	 * 
 	 * @return the list of all users
 	 */
-	List<User> findAllUsers();
+	List<User> findAllUsers() throws ServiceException;
 
 	/**
 	 * Persist the user to the database.
@@ -52,7 +53,7 @@ public interface UserService extends PhrsService {
 	 *            the user to persist
 	 * @return the persisted user
 	 */
-	User persistUser(User user);
+	User persistUser(User user) throws ServiceException;
 
 	/**
 	 * Remove the user from the database.
@@ -61,6 +62,6 @@ public interface UserService extends PhrsService {
 	 *            the user to remove
 	 * @return the removed user
 	 */
-	User removeUser(User user);
+	User removeUser(User user) throws ServiceException;
 
 }

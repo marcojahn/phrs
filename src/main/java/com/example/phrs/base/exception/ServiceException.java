@@ -4,45 +4,45 @@
 package com.example.phrs.base.exception;
 
 /**
- * SecurityException
+ * ServiceException
  * 
  * @author Nicolas Moser
  */
-public class SecurityException extends ServiceException {
+public class ServiceException extends PhrsException {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Creates a new {@link SecurityException}.
+	 * Creates a new {@link ServiceException}.
 	 * 
 	 * @param message
 	 *            the error message
 	 */
-	public SecurityException(String message) {
+	public ServiceException(String message) {
 
 		super(message);
 	}
 
 	/**
-	 * Creates a new {@link SecurityException}.
+	 * Creates a new {@link ServiceException}.
 	 * 
 	 * @param cause
 	 *            the error cause
 	 */
-	public SecurityException(Exception cause) {
+	public ServiceException(Exception cause) {
 
 		super(cause);
 	}
 
 	/**
-	 * Creates a new {@link SecurityException}.
+	 * Creates a new {@link ServiceException}.
 	 * 
 	 * @param message
 	 *            the error message
 	 * @param cause
 	 *            the error cause
 	 */
-	public SecurityException(String message, Exception cause) {
+	public ServiceException(String message, Exception cause) {
 
 		super(message, cause);
 	}

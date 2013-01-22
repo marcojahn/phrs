@@ -8,7 +8,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import com.example.phrs.base.exception.PersistenceException;
 import com.example.phrs.base.exception.SecurityException;
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.base.logging.PhrsLogger;
 import com.example.phrs.base.persistence.PersistenceManager;
 import com.example.phrs.base.persistence.PersistenceQuery;
@@ -18,7 +20,7 @@ import com.example.phrs.ejb.impl.PhrsServiceImpl;
 import com.example.phrs.entities.user.User;
 
 /**
- * UserService
+ * UserServiceImpl
  * 
  * @author Nicolas Moser
  */
@@ -27,7 +29,7 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String LOGIN_QUERY = "select u from User u where u.userName = :userName and u.password = :password";
+	private static final String LOGIN_QUERY = "select u from User u where u.userName = :username and u.password = :password";
 
 	@Inject
 	private PersistenceManager persistenceManager;
@@ -38,48 +40,70 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 	@Override
 	public User authenticate(String userName, String password) throws SecurityException {
 
-		PersistenceQuery<User> query = this.persistenceManager.createQuery(LOGIN_QUERY, User.class);
+		try {
+			PersistenceQuery<User> query = this.persistenceManager.createQuery(LOGIN_QUERY, User.class);
 
-		query.setParameter("userName", userName);
-		query.setParameter("password", password);
+			query.setParameter("username", userName);
+			query.setParameter("password", password);
 
-		User user = query.getSingleResult();
+			User user = query.getSingleResult();
 
-		if (user == null) {
-			this.logger.error("The User with username '", userName, "' does not exist!");
-			throw new SecurityException("The User with username '" + userName + "' cannot be authenticated!");
+			if (user == null) {
+				this.logger.error("The User with username '", userName, "' does not exist!");
+				throw new SecurityException("The User with username '" + userName + "' cannot be authenticated!");
+			}
+
+			return user;
+
+		} catch (PersistenceException e) {
+			throw new SecurityException("The User with username '" + userName + "' cannot be authenticated!", e);
 		}
-
-		return user;
 	}
 
 	@Override
-	public User findUser(Long id) {
+	public User findUser(Long id) throws ServiceException {
 
-		return this.persistenceManager.find(User.class, id);
+		try {
+
+			return this.persistenceManager.find(User.class, id);
+
+		} catch (PersistenceException e) {
+			throw new ServiceException("The User with ID '" + id + "' does not exist!", e);
+		}
 	}
 
 	@Override
-	public List<User> findAllUsers() {
+	public List<User> findAllUsers() throws ServiceException {
 
-		PersistenceQuery<User> query = this.persistenceManager.createQuery("select u from User u", User.class);
+		try {
+			PersistenceQuery<User> query = this.persistenceManager.createQuery("select u from User u", User.class);
+			return query.getResultList();
 
-		return query.getResultList();
+		} catch (PersistenceException e) {
+			throw new ServiceException("The List of Users cannot be loaded.", e);
+		}
 	}
 
 	@Override
-	public User persistUser(User user) {
+	public User persistUser(User user) throws ServiceException {
 
-		this.persistenceManager.persist(user);
-
-		return user;
+		try {
+			this.persistenceManager.persist(user);
+			return user;
+		} catch (PersistenceException e) {
+			throw new ServiceException("The User '" + user + "' cannot be persisted", e);
+		}
 	}
 
 	@Override
-	public User removeUser(User user) {
+	public User removeUser(User user) throws ServiceException {
 
-		this.persistenceManager.remove(user);
-
-		return user;
+		try {
+			this.persistenceManager.remove(user);
+			return user;
+		} catch (PersistenceException e) {
+			throw new ServiceException("The User '" + user + "' cannot be removed", e);
+		}
 	}
+
 }

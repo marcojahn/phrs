@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.example.phrs.base.authorization.AuthenticationRequest;
 import com.example.phrs.base.exception.SecurityException;
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.ejb.api.user.UserService;
 import com.example.phrs.entities.user.User;
 
@@ -35,7 +36,7 @@ public class UserRestServiceV1 {
 	@Path("/login/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public User login(AuthenticationRequest authenticationRequest) throws SecurityException {
+	public User login(AuthenticationRequest authenticationRequest) throws ServiceException {
 
 		if (authenticationRequest == null) {
 			throw new SecurityException("No Authentication Request submitted.");
@@ -60,7 +61,7 @@ public class UserRestServiceV1 {
 	@GET
 	@Path("/v1/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUser(@QueryParam("id") Long id) {
+	public User getUser(@QueryParam("id") Long id) throws ServiceException {
 
 		User user = this.userService.findUser(id);
 		this.resetUser(user);
@@ -71,7 +72,7 @@ public class UserRestServiceV1 {
 	@GET
 	@Path("/v1")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getUserList() {
+	public List<User> getUserList() throws ServiceException {
 
 		List<User> users = this.userService.findAllUsers();
 
@@ -86,7 +87,7 @@ public class UserRestServiceV1 {
 	@Path("/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public User createUser(User user) {
+	public User createUser(User user) throws ServiceException {
 
 		user = this.userService.persistUser(user);
 		this.resetUser(user);
@@ -98,7 +99,7 @@ public class UserRestServiceV1 {
 	@Path("/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public User removeUser(User user) {
+	public User removeUser(User user) throws ServiceException {
 
 		user = this.userService.removeUser(user);
 		this.resetUser(user);
