@@ -1,7 +1,7 @@
 /*
  * Copyright 2013 Marco Jahn & Nicolas Moser
  */
-package com.example.phrs.context;
+package com.example.phrs.base.context;
 
 import java.io.Serializable;
 import java.util.UUID;

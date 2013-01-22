@@ -8,11 +8,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.example.phrs.ejb.api.user.UserService;
@@ -23,16 +24,25 @@ import com.example.phrs.entities.user.User;
  * 
  * @author Nicolas Moser
  */
-@Path("/user/v1")
+@Path("/user")
 public class UserRestServiceV1 {
 
 	@Inject
 	private UserService userService;
 
-	@GET
-	@Path("/{id}")
+	@POST
+	@Path("/v1/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUser(@PathParam("id") Long id) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public User login(@FormParam("userName") String userName, @FormParam("password") String password) {
+
+		return this.userService.authenticate(userName, password);
+	}
+
+	@GET
+	@Path("/v1/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUser(@QueryParam("id") Long id) {
 
 		User user = this.userService.findUser(id);
 
@@ -44,6 +54,7 @@ public class UserRestServiceV1 {
 	}
 
 	@GET
+	@Path("/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUserList() {
 
@@ -59,6 +70,7 @@ public class UserRestServiceV1 {
 	}
 
 	@POST
+	@Path("/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public User createUser(User user) {
@@ -67,6 +79,7 @@ public class UserRestServiceV1 {
 	}
 
 	@DELETE
+	@Path("/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public User removeUser(User user) {

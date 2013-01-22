@@ -23,4 +23,6 @@ public interface UserService extends PhrsService {
 
 	User removeUser(User user);
 
+	User authenticate(String userName, String password);
+
 }

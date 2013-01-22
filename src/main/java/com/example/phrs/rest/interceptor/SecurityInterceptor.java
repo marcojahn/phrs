@@ -15,8 +15,8 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.UnauthorizedException;
 import org.jboss.resteasy.spi.interception.PreProcessInterceptor;
 
+import com.example.phrs.base.context.GlobalContext;
 import com.example.phrs.base.logging.PhrsLogger;
-import com.example.phrs.context.GlobalContext;
 
 /**
  * SecurityInterceptor
