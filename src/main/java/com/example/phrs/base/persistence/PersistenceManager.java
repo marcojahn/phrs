@@ -3,7 +3,7 @@
  */
 package com.example.phrs.base.persistence;
 
-import javax.persistence.TypedQuery;
+import com.example.phrs.entities.PhrsEntity;
 
 /**
  * PersistenceManager
@@ -12,21 +12,21 @@ import javax.persistence.TypedQuery;
  */
 public interface PersistenceManager {
 
-	void remove(Object arg0);
+	<T extends PhrsEntity> T persist(T entity);
 
-	void refresh(Object arg0);
+	<T extends PhrsEntity> T merge(T entity);
 
-	void persist(Object arg0);
+	<T extends PhrsEntity> T remove(T entity);
 
-	<T> T merge(T arg0);
+	<T extends PhrsEntity> T refresh(T entity);
 
-	<T> T find(Class<T> arg0, Object arg1);
+	<T extends PhrsEntity> T find(Class<T> type, Long id);
 
-	void detach(Object arg0);
+	<T extends PhrsEntity> T detach(T entity);
 
-	<T> TypedQuery<T> createQuery(String arg0, Class<T> arg1);
+	<T extends PhrsEntity> PersistenceQuery<T> createQuery(String query, Class<T> type);
 
-	boolean contains(Object arg0);
+	<T extends PhrsEntity> boolean contains(T entity);
 
 	void close();
 

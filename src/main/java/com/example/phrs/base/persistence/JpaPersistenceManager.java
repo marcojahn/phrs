@@ -5,7 +5,8 @@ package com.example.phrs.base.persistence;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+
+import com.example.phrs.entities.PhrsEntity;
 
 /**
  * JpaPersistenceManager
@@ -18,6 +19,62 @@ class JpaPersistenceManager implements PersistenceManager {
 	protected EntityManager entityManager;
 
 	@Override
+	public <T extends PhrsEntity> boolean contains(T entity) {
+
+		return this.entityManager.contains(entity);
+	}
+
+	@Override
+	public <T extends PhrsEntity> T find(Class<T> type, Long id) {
+
+		return this.entityManager.find(type, id);
+	}
+
+	@Override
+	public <T extends PhrsEntity> T detach(T entity) {
+
+		this.entityManager.detach(entity);
+
+		return entity;
+	}
+
+	@Override
+	public <T extends PhrsEntity> T merge(T entity) {
+
+		return this.entityManager.merge(entity);
+	}
+
+	@Override
+	public <T extends PhrsEntity> T persist(T entity) {
+
+		this.entityManager.persist(entity);
+
+		return entity;
+	}
+
+	@Override
+	public <T extends PhrsEntity> T refresh(T entity) {
+
+		this.entityManager.refresh(entity);
+
+		return entity;
+	}
+
+	@Override
+	public <T extends PhrsEntity> T remove(T entity) {
+
+		this.entityManager.remove(entity);
+
+		return entity;
+	}
+
+	@Override
+	public <T extends PhrsEntity> PersistenceQuery<T> createQuery(String queryString, Class<T> type) {
+
+		return new JpaQuery<T>(this.entityManager.createQuery(queryString, type));
+	}
+
+	@Override
 	public void clear() {
 
 		this.entityManager.clear();
@@ -27,54 +84,6 @@ class JpaPersistenceManager implements PersistenceManager {
 	public void close() {
 
 		this.entityManager.close();
-	}
-
-	@Override
-	public boolean contains(Object arg0) {
-
-		return this.entityManager.contains(arg0);
-	}
-
-	@Override
-	public <T> TypedQuery<T> createQuery(String arg0, Class<T> arg1) {
-
-		return this.entityManager.createQuery(arg0, arg1);
-	}
-
-	@Override
-	public void detach(Object arg0) {
-
-		this.entityManager.detach(arg0);
-	}
-
-	@Override
-	public <T> T find(Class<T> arg0, Object arg1) {
-
-		return this.entityManager.find(arg0, arg1);
-	}
-
-	@Override
-	public <T> T merge(T arg0) {
-
-		return this.entityManager.merge(arg0);
-	}
-
-	@Override
-	public void persist(Object arg0) {
-
-		this.entityManager.persist(arg0);
-	}
-
-	@Override
-	public void refresh(Object arg0) {
-
-		this.entityManager.refresh(arg0);
-	}
-
-	@Override
-	public void remove(Object arg0) {
-
-		this.entityManager.remove(arg0);
 	}
 
 }
