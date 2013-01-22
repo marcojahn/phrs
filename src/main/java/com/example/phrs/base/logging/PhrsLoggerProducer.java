@@ -16,10 +16,10 @@ import org.apache.log4j.Logger;
 public class PhrsLoggerProducer {
 
 	/**
-	 * Erzeugt einen neuen Log4JDisoWebLogger für einen dependency injection point.
+	 * Procuces a new {@link PhrsLogger} instance.
 	 * 
 	 * @param injectionPoint
-	 *            die depency injection verwendung
+	 *            the dependency injection source
 	 */
 	@Produces
 	public PhrsLogger getLogger(InjectionPoint injectionPoint) {

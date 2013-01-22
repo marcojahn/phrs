@@ -17,13 +17,13 @@ import org.apache.log4j.Logger;
  */
 class Log4JPhrsLogger implements PhrsLogger {
 
-	/** Das Pattern für Date Log-Ausgaben. */
+	/** Log output pattern. */
 	private static final String DATE_PATTERN = "yyyy-MM-dd hh:mm:ss,SS";
 
-	/** Log-Ausgabe fuer einen <tt>null</tt> Parameter. */
+	/** Log output for <tt>null</tt> Parameter. */
 	private static final String NULL_OBJECT = "null";
 
-	/** Der zugrundeliegende Logger auf den die Ausgaben weiter geleitet werden. */
+	/** Logger Delegate */
 	private final Logger logger;
 
 	/**
@@ -146,13 +146,6 @@ class Log4JPhrsLogger implements PhrsLogger {
 		return this.logger.isTraceEnabled();
 	}
 
-	/**
-	 * Macht auf alle übergebenen Objekte ein toString() und gibt diese konkateniert zurück.
-	 * 
-	 * @param objects
-	 *            Nachrichten Komponenten
-	 * @return konkatenierter string
-	 */
 	private String concatenateMessages(Object... objects) {
 
 		final StringBuilder message = new StringBuilder();
@@ -167,14 +160,6 @@ class Log4JPhrsLogger implements PhrsLogger {
 		return message.toString();
 	}
 
-	/**
-	 * Fügt eine String Representation des gegebenen Objekts am Ende der Nachricht an.
-	 * 
-	 * @param message
-	 *            die gesamt Message
-	 * @param object
-	 *            das zu konkatenierende Objekt
-	 */
 	private void concatenateObject(StringBuilder message, Object object) {
 
 		if (object == null) {
