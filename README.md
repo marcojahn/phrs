@@ -17,5 +17,5 @@ Setup
 
 URLs
 ----
-App URL: http://<domain>/phrs/
-REST URL: http://<domain>/phrs/rest/<service-name>
+App URL: http://<domain>:port/phrs/
+REST URL: http://<domain>:port/phrs/rest/<service-name>

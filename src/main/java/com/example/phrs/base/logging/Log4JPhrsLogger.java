@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Nicolas Moser
  */
-public class Log4JPhrsLogger implements PhrsLogger {
+class Log4JPhrsLogger implements PhrsLogger {
 
 	/** Das Pattern für Date Log-Ausgaben. */
 	private static final String DATE_PATTERN = "yyyy-MM-dd hh:mm:ss,SS";
@@ -27,26 +27,14 @@ public class Log4JPhrsLogger implements PhrsLogger {
 	private final Logger logger;
 
 	/**
-	 * Erzeugt einen neuen Log4JDisoWebLogger für eine spezielle Klasse.
+	 * Constructs a new {@link Log4JPhrsLogger} instance.
 	 * 
-	 * @param clazz
-	 *            Die Klasse, für die der Logger erstellt werden soll.
+	 * @param delegate
+	 *            the Log4j delegate
 	 */
-	public Log4JPhrsLogger(Class<?> clazz) {
+	public Log4JPhrsLogger(Logger delegate) {
 
-		this.logger = Logger.getLogger(clazz);
-	}
-
-	/**
-	 * Erzeugt einen neuen Log4JDisoWebLogger mit einem bestimmten Namen. Named-Logger können auch in mehreren Klassen
-	 * verwendet werden.
-	 * 
-	 * @param loggerName
-	 *            Der Name für den Logger.
-	 */
-	public Log4JPhrsLogger(String loggerName) {
-
-		this.logger = Logger.getLogger(loggerName);
+		this.logger = delegate;
 	}
 
 	@Override

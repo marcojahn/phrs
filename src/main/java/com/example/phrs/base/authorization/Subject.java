@@ -3,6 +3,8 @@
  */
 package com.example.phrs.base.authorization;
 
+import java.io.Serializable;
+
 import com.example.phrs.entities.user.User;
 
 /**
@@ -10,7 +12,9 @@ import com.example.phrs.entities.user.User;
  * 
  * @author Nicolas Moser
  */
-public class Subject {
+public class Subject implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private User user;
 

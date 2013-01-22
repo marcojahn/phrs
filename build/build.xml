@@ -152,7 +152,6 @@
 				<include name="${ant.project.name}.ear" />
 			</fileset>
 		</copy>
-		<touch file="${ant.project.name}.ear" />
 	</target>
 
 	<!-- 
