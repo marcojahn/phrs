@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.example.phrs.base.exception.SecurityException;
 import com.example.phrs.base.logging.PhrsLogger;
 import com.example.phrs.ejb.api.user.UserServiceLocal;
 import com.example.phrs.ejb.api.user.UserServiceRemote;
@@ -35,7 +36,7 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 	private PhrsLogger logger;
 
 	@Override
-	public User authenticate(String userName, String password) {
+	public User authenticate(String userName, String password) throws SecurityException {
 
 		TypedQuery<User> query = this.entityManager.createQuery(LOGIN_QUERY, User.class);
 

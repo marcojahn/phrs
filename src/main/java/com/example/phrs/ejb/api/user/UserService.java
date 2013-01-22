@@ -5,6 +5,7 @@ package com.example.phrs.ejb.api.user;
 
 import java.util.List;
 
+import com.example.phrs.base.exception.SecurityException;
 import com.example.phrs.ejb.api.PhrsService;
 import com.example.phrs.entities.user.User;
 
@@ -15,6 +16,8 @@ import com.example.phrs.entities.user.User;
  */
 public interface UserService extends PhrsService {
 
+	User authenticate(String userName, String password) throws SecurityException;
+
 	User findUser(Long id);
 
 	List<User> findAllUsers();
@@ -22,7 +25,5 @@ public interface UserService extends PhrsService {
 	User persistUser(User user);
 
 	User removeUser(User user);
-
-	User authenticate(String userName, String password);
 
 }
