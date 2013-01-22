@@ -3,6 +3,8 @@
  */
 package com.example.phrs.entities.user;
 
+import org.codehaus.jackson.annotate.JsonValue;
+
 /**
  * UserRole
  * 
@@ -10,10 +12,28 @@ package com.example.phrs.entities.user;
  */
 public enum UserRole {
 
-	ADMIN,
+	ADMIN("admin"),
 
-	MANAGER,
+	MANAGER("manager"),
 
-	USER
+	USER("user");
+
+	private UserRole(String value) {
+
+		this.value = value;
+	}
+
+	private String value;
+
+	/**
+	 * Getter for the value.
+	 * 
+	 * @return the value
+	 */
+	@JsonValue
+	public String value() {
+
+		return this.value;
+	}
 
 }
