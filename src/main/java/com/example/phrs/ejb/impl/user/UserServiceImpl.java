@@ -26,7 +26,7 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String LOGIN_QUERY = "select u from User u where u.userName = :userName and p.password = :password";
+	private static final String LOGIN_QUERY = "select u from User u where u.userName = :userName and u.password = :password";
 
 	@Inject
 	private EntityManager entityManager;
