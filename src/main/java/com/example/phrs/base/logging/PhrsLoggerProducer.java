@@ -9,11 +9,11 @@ import javax.enterprise.inject.spi.InjectionPoint;
 import org.apache.log4j.Logger;
 
 /**
- * PhrsLoggerFactory
+ * PhrsLoggerProducer
  * 
  * @author Nicolas Moser
  */
-public class PhrsLoggerFactory {
+public class PhrsLoggerProducer {
 
 	/**
 	 * Erzeugt einen neuen Log4JDisoWebLogger für einen dependency injection point.

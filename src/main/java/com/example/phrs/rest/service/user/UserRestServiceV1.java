@@ -31,7 +31,7 @@ public class UserRestServiceV1 {
 	private UserService userService;
 
 	@POST
-	@Path("/v1/login")
+	@Path("/login/v1")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public User login(@FormParam("userName") String userName, @FormParam("password") String password) {
