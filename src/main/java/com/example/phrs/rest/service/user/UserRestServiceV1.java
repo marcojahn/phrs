@@ -33,7 +33,7 @@ public class UserRestServiceV1 {
 	@POST
 	@Path("/login/v1")
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public User login(@FormParam("userName") String userName, @FormParam("password") String password) {
 
 		return this.userService.authenticate(userName, password);
