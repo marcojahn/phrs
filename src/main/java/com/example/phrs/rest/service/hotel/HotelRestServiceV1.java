@@ -62,7 +62,7 @@ public class HotelRestServiceV1 {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Hotel updateHotel(Hotel hotel) throws ServiceException {
 
-		return this.hotelService.mergeHotel(hotel);
+		return this.hotelService.updateHotel(hotel);
 	}
 
 	@DELETE
