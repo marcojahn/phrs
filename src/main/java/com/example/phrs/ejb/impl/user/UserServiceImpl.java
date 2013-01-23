@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import com.example.phrs.base.authorization.Subject;
 import com.example.phrs.base.context.GlobalContext;
-import com.example.phrs.base.context.SessionContext;
 import com.example.phrs.base.exception.PersistenceException;
 import com.example.phrs.base.exception.SecurityException;
 import com.example.phrs.base.exception.ServiceException;
@@ -43,9 +42,6 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 	@Inject
 	GlobalContext globalContext;
 
-	@Inject
-	private SessionContext sessionContext;
-
 	@Override
 	public User authenticate(String userName, String password) throws SecurityException {
 
@@ -62,10 +58,8 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 				throw new SecurityException("The User with username '" + userName + "' cannot be authenticated!");
 			}
 
-			if (this.sessionContext.getSubject() != null) {
-				Subject subject = this.globalContext.addUser(user);
-				this.sessionContext.setSubject(subject);
-			}
+			Subject subject = this.globalContext.addUser(user);
+			user.setKey(subject.getKey());
 
 			return user;
 

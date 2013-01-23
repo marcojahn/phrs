@@ -18,7 +18,7 @@ public class Subject implements Serializable {
 
 	private User user;
 
-	private Long uuid;
+	private Long key;
 
 	private Long timestamp;
 
@@ -46,24 +46,24 @@ public class Subject implements Serializable {
 	}
 
 	/**
-	 * Getter for the uuid.
+	 * Getter for the key.
 	 * 
-	 * @return the uuid
+	 * @return the key
 	 */
-	public Long getUuid() {
+	public Long getKey() {
 
-		return this.uuid;
+		return this.key;
 	}
 
 	/**
-	 * Setter for the uuid.
+	 * Setter for the key.
 	 * 
-	 * @param uuid
-	 *            the uuid to set
+	 * @param key
+	 *            the key to set
 	 */
-	public void setUuid(Long uuid) {
+	public void setKey(Long key) {
 
-		this.uuid = uuid;
+		this.key = key;
 	}
 
 	/**

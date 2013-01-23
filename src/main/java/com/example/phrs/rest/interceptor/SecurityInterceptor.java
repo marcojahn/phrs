@@ -15,7 +15,7 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.UnauthorizedException;
 import org.jboss.resteasy.spi.interception.PreProcessInterceptor;
 
-import com.example.phrs.base.context.SessionContext;
+import com.example.phrs.base.context.GlobalContext;
 import com.example.phrs.base.logging.PhrsLogger;
 
 /**
@@ -29,8 +29,10 @@ public class SecurityInterceptor implements PreProcessInterceptor {
 
 	private static final String HEADER_SECURITY_TOKEN = "X-SecurityToken";
 
+	private static final String ANONYMOUS_URL_LOGIN = "/user/login/v1";
+
 	@Inject
-	private SessionContext sessionContext;
+	private GlobalContext globalContext;
 
 	@Inject
 	private PhrsLogger logger;
@@ -38,35 +40,41 @@ public class SecurityInterceptor implements PreProcessInterceptor {
 	@Override
 	public ServerResponse preProcess(HttpRequest request, ResourceMethod method) throws UnauthorizedException {
 
-		// if(request.getPreprocessedPath().startsWith("/secure")){}
-		// perhaps you will limit it to a special path
-
 		if (!this.isAnonymous(request.getPreprocessedPath())) {
 
-			// Then get the HTTP-Authorization header and base64 decode it
 			List<String> headers = request.getHttpHeaders().getRequestHeader(HEADER_SECURITY_TOKEN);
-
-			if (this.sessionContext.getSubject() == null) {
-				throw new UnauthorizedException("The User is not authorized.");
-			}
 
 			if (headers != null && headers.isEmpty()) {
 				throw new UnauthorizedException("The User is not authorized.");
 			}
 
-			String header = headers.get(0);
+			try {
+				String header = headers.get(0);
+				long key = Long.parseLong(header);
 
-			// check whatever you want with your EJB, if it fails
-			// throw new UnauthorizedException("Username/Password does not match");
+				if (!this.globalContext.isAuthenticated(key)) {
+					throw new UnauthorizedException("The User is not authorized.");
+				}
+			} catch (Exception e) {
+				throw new UnauthorizedException("The User is not authorized.");
+			}
+
 		}
 
 		return null;
 	}
 
+	/**
+	 * Checks whether the given URL may be accessed anonymously.
+	 * 
+	 * @param url
+	 *            the url to check
+	 * @return <b>true</b> if the URL may be accessed anonymously, <b>false</b> if not
+	 */
 	private boolean isAnonymous(String url) {
 
 		if (url != null) {
-			if (url.startsWith("/user/login/v1")) {
+			if (url.startsWith(ANONYMOUS_URL_LOGIN)) {
 				return true;
 			}
 		}

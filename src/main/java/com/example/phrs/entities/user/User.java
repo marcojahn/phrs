@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.example.phrs.entities.PhrsEntity;
 import com.example.phrs.entities.hotel.Reservation;
@@ -44,6 +45,8 @@ public class User extends PhrsEntity {
 	private String lastName;
 
 	private Project project;
+
+	private Long key;
 
 	private List<Reservation> reservationList;
 
@@ -201,6 +204,28 @@ public class User extends PhrsEntity {
 	public void setProject(Project project) {
 
 		this.project = project;
+	}
+
+	/**
+	 * Getter for the key.
+	 * 
+	 * @return the key
+	 */
+	@Transient
+	public Long getKey() {
+
+		return this.key;
+	}
+
+	/**
+	 * Setter for the key.
+	 * 
+	 * @param key
+	 *            the key to set
+	 */
+	public void setKey(Long key) {
+
+		this.key = key;
 	}
 
 	/**
