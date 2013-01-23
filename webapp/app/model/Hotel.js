@@ -1,6 +1,8 @@
 Ext.define('PHRS.model.Hotel', {
     extend: 'PHRS.model.PhrsEntity',
 
+    idProperty: 'id',
+
     fields: [
         {name: 'name'},
         {name: 'street'},
