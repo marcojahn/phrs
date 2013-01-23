@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -53,7 +54,15 @@ public class HotelRestServiceV1 {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Hotel createHotel(Hotel hotel) throws ServiceException {
 
-		return this.hotelService.persistHotel(hotel);
+		return this.hotelService.createHotel(hotel);
+	}
+
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Hotel updateHotel(Hotel hotel) throws ServiceException {
+
+		return this.hotelService.mergeHotel(hotel);
 	}
 
 	@DELETE

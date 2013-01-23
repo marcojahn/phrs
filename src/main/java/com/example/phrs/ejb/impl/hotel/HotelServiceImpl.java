@@ -43,11 +43,17 @@ public class HotelServiceImpl extends PhrsServiceImpl implements HotelServiceLoc
 	}
 
 	@Override
-	public Hotel persistHotel(Hotel hotel) {
+	public Hotel createHotel(Hotel hotel) {
 
 		this.entityManager.persist(hotel);
 
 		return hotel;
+	}
+
+	@Override
+	public Hotel updateHotel(Hotel hotel) {
+
+		return this.entityManager.merge(hotel);
 	}
 
 	@Override

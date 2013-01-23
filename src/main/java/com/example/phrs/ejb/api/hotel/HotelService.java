@@ -19,7 +19,9 @@ public interface HotelService extends PhrsService {
 
 	List<Hotel> findAllHotels();
 
-	Hotel persistHotel(Hotel hotel);
+	Hotel createHotel(Hotel hotel);
+
+	Hotel updateHotel(Hotel hotel);
 
 	Hotel removeHotel(Hotel hotel);
 
