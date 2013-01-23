@@ -5,6 +5,7 @@ package com.example.phrs.ejb.api.hotel;
 
 import java.util.List;
 
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.ejb.api.PhrsService;
 import com.example.phrs.entities.hotel.Hotel;
 
@@ -15,14 +16,14 @@ import com.example.phrs.entities.hotel.Hotel;
  */
 public interface HotelService extends PhrsService {
 
-	Hotel findHotel(Long id);
+	Hotel findHotel(Long id) throws ServiceException;
 
-	List<Hotel> findAllHotels();
+	List<Hotel> findAllHotels() throws ServiceException;
 
-	Hotel createHotel(Hotel hotel);
+	Hotel createHotel(Hotel hotel) throws ServiceException;
 
-	Hotel updateHotel(Hotel hotel);
+	Hotel updateHotel(Hotel hotel) throws ServiceException;
 
-	Hotel removeHotel(Hotel hotel);
+	Hotel removeHotel(Hotel hotel) throws ServiceException;
 
 }

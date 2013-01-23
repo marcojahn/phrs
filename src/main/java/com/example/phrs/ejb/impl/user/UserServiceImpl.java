@@ -94,13 +94,23 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 	}
 
 	@Override
-	public User persistUser(User user) throws ServiceException {
+	public User createUser(User user) throws ServiceException {
 
 		try {
 			this.persistenceManager.persist(user);
 			return user;
 		} catch (PersistenceException e) {
-			throw new ServiceException("The User '" + user + "' cannot be persisted", e);
+			throw new ServiceException("The User '" + user + "' cannot be persisted.", e);
+		}
+	}
+
+	@Override
+	public User updateUser(User user) throws ServiceException {
+
+		try {
+			return this.persistenceManager.merge(user);
+		} catch (PersistenceException e) {
+			throw new ServiceException("The User '" + user + "' cannot be updated.", e);
 		}
 	}
 

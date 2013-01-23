@@ -5,8 +5,8 @@ package com.example.phrs.ejb.api.user;
 
 import java.util.List;
 
-import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.base.exception.SecurityException;
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.ejb.api.PhrsService;
 import com.example.phrs.entities.user.User;
 
@@ -53,7 +53,16 @@ public interface UserService extends PhrsService {
 	 *            the user to persist
 	 * @return the persisted user
 	 */
-	User persistUser(User user) throws ServiceException;
+	User createUser(User user) throws ServiceException;
+
+	/**
+	 * Update the user to the database.
+	 * 
+	 * @param user
+	 *            the user to persist
+	 * @return the updated user
+	 */
+	User updateUser(User user) throws ServiceException;
 
 	/**
 	 * Remove the user from the database.

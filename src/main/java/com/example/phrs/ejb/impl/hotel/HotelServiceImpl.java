@@ -6,10 +6,12 @@ package com.example.phrs.ejb.impl.hotel;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.inject.Inject;
 
+import com.example.phrs.base.exception.PersistenceException;
+import com.example.phrs.base.exception.ServiceException;
+import com.example.phrs.base.persistence.PersistenceManager;
+import com.example.phrs.base.persistence.PersistenceQuery;
 import com.example.phrs.ejb.api.hotel.HotelServiceLocal;
 import com.example.phrs.ejb.api.hotel.HotelServiceRemote;
 import com.example.phrs.ejb.impl.PhrsServiceImpl;
@@ -25,41 +27,64 @@ public class HotelServiceImpl extends PhrsServiceImpl implements HotelServiceLoc
 
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext(unitName = "phrsPu")
-	private EntityManager entityManager;
+	@Inject
+	private PersistenceManager entityManager;
 
 	@Override
-	public Hotel findHotel(Long id) {
+	public Hotel findHotel(Long id) throws ServiceException {
 
-		return this.entityManager.find(Hotel.class, id);
+		try {
+			return this.entityManager.find(Hotel.class, id);
+
+		} catch (PersistenceException e) {
+			throw new ServiceException("The Hotel with ID '" + id + "' does not exist!", e);
+		}
 	}
 
 	@Override
-	public List<Hotel> findAllHotels() {
+	public List<Hotel> findAllHotels() throws ServiceException {
 
-		TypedQuery<Hotel> query = this.entityManager.createQuery("select h from Hotel h", Hotel.class);
+		try {
+			PersistenceQuery<Hotel> query = this.entityManager.createQuery("select h from Hotel h", Hotel.class);
 
-		return query.getResultList();
+			return query.getResultList();
+
+		} catch (PersistenceException e) {
+			throw new ServiceException("The List of Hotels cannot be loaded.", e);
+		}
 	}
 
 	@Override
-	public Hotel createHotel(Hotel hotel) {
+	public Hotel createHotel(Hotel hotel) throws ServiceException {
 
-		this.entityManager.persist(hotel);
+		try {
+			this.entityManager.persist(hotel);
 
-		return hotel;
+			return hotel;
+		} catch (PersistenceException e) {
+			throw new ServiceException("The Hotel '" + hotel + "' cannot be persisted.", e);
+		}
 	}
 
 	@Override
-	public Hotel updateHotel(Hotel hotel) {
+	public Hotel updateHotel(Hotel hotel) throws ServiceException {
 
-		return this.entityManager.merge(hotel);
+		try {
+			return this.entityManager.merge(hotel);
+
+		} catch (PersistenceException e) {
+			throw new ServiceException("The Hotel '" + hotel + "' cannot be updated.", e);
+		}
 	}
 
 	@Override
-	public Hotel removeHotel(Hotel hotel) {
+	public Hotel removeHotel(Hotel hotel) throws ServiceException {
 
-		this.entityManager.remove(hotel);
+		try {
+			this.entityManager.remove(hotel);
+		} catch (PersistenceException e) {
+			throw new ServiceException("The Hotel '" + hotel + "' cannot be removed", e);
+		}
 
 		return hotel;
 	}

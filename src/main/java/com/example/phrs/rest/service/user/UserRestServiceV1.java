@@ -89,7 +89,7 @@ public class UserRestServiceV1 {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public User createUser(User user) throws ServiceException {
 
-		user = this.userService.persistUser(user);
+		user = this.userService.createUser(user);
 		this.resetUser(user);
 
 		return user;
