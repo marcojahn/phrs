@@ -8,70 +8,107 @@ import java.util.List;
 import javax.persistence.Parameter;
 import javax.persistence.TypedQuery;
 
+import com.example.phrs.base.exception.PersistenceException;
+
 /**
  * JpaQuery
  * 
  * @author Nicolas Moser
  */
-public class JpaQuery<T> implements PersistenceQuery<T> {
+class JpaQuery<T> implements PersistenceQuery<T> {
 
 	private TypedQuery<T> query;
+
+	private String queryString;
 
 	/**
 	 * Constructs the new persistence query instance.
 	 * 
 	 * @param query
 	 *            the typed query instance
+	 * @param the
+	 *            query string
 	 */
-	public JpaQuery(TypedQuery<T> query) {
+	public JpaQuery(TypedQuery<T> query, String queryString) {
 
 		this.query = query;
+		this.queryString = queryString;
 	}
 
 	@Override
-	public int executeUpdate() {
+	public int executeUpdate() throws PersistenceException {
 
-		return this.query.executeUpdate();
+		try {
+			return this.query.executeUpdate();
+		} catch (Exception e) {
+			throw new PersistenceException("Error executing update query '" + this.queryString + "'.");
+		}
 	}
 
 	@Override
-	public List<T> getResultList() {
+	public List<T> getResultList() throws PersistenceException {
 
-		return this.query.getResultList();
+		try {
+			return this.query.getResultList();
+		} catch (Exception e) {
+			throw new PersistenceException("Error executing Query '" + this.queryString + "'.");
+		}
 	}
 
 	@Override
-	public T getSingleResult() {
+	public T getSingleResult() throws PersistenceException {
 
-		return this.query.getSingleResult();
+		try {
+			return this.query.getSingleResult();
+		} catch (Exception e) {
+			throw new PersistenceException("Error retrieving single result from query '" + this.queryString + "'.");
+		}
 	}
 
 	@Override
-	public PersistenceQuery<T> setFirstResult(int firstResult) {
+	public PersistenceQuery<T> setFirstResult(int firstResult) throws PersistenceException {
 
-		this.query.setFirstResult(firstResult);
-		return this;
+		try {
+			this.query.setFirstResult(firstResult);
+			return this;
+		} catch (Exception e) {
+			throw new PersistenceException("Error setting first result for query '" + this.queryString + "'.");
+		}
 	}
 
 	@Override
-	public PersistenceQuery<T> setMaxResults(int maxResults) {
+	public PersistenceQuery<T> setMaxResults(int maxResults) throws PersistenceException {
 
-		this.query.setMaxResults(maxResults);
-		return this;
+		try {
+			this.query.setMaxResults(maxResults);
+			return this;
+		} catch (Exception e) {
+			throw new PersistenceException("Error setting max result for query '" + this.queryString + "'.");
+		}
 	}
 
 	@Override
-	public PersistenceQuery<T> setParameter(Parameter<T> name, T value) {
+	public PersistenceQuery<T> setParameter(Parameter<T> name, T value) throws PersistenceException {
 
-		this.query.setParameter(name, value);
-		return this;
+		try {
+			this.query.setParameter(name, value);
+			return this;
+		} catch (Exception e) {
+			throw new PersistenceException("Error setting parameter '" + name.getName() + "' into query '"
+					+ this.queryString + "'.");
+		}
 	}
 
 	@Override
-	public PersistenceQuery<T> setParameter(String name, Object value) {
+	public PersistenceQuery<T> setParameter(String name, Object value) throws PersistenceException {
 
-		this.query.setParameter(name, value);
-		return this;
+		try {
+			this.query.setParameter(name, value);
+			return this;
+		} catch (Exception e) {
+			throw new PersistenceException("Error setting parameter '" + name + "' into query '" + this.queryString
+					+ "'.");
+		}
 	}
 
 }
