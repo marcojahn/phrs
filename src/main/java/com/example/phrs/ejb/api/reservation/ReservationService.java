@@ -5,6 +5,7 @@ package com.example.phrs.ejb.api.reservation;
 
 import java.util.List;
 
+import com.example.phrs.base.exception.ServiceException;
 import com.example.phrs.ejb.api.PhrsService;
 import com.example.phrs.entities.hotel.Reservation;
 
@@ -15,11 +16,13 @@ import com.example.phrs.entities.hotel.Reservation;
  */
 public interface ReservationService extends PhrsService {
 
-	Reservation findReservation(Long id);
+	Reservation findReservation(Long id) throws ServiceException;
 
-	List<Reservation> findAllReservations();
+	List<Reservation> findAllReservations() throws ServiceException;
 
-	Reservation persistReservation(Reservation reservation);
+	Reservation createReservation(Reservation reservation) throws ServiceException;
 
-	Reservation removeReservation(Reservation reservation);
+	Reservation updateReservation(Reservation reservation) throws ServiceException;
+
+	Reservation removeReservation(Reservation reservation) throws ServiceException;
 }
