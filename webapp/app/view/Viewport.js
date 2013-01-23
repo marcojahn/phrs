@@ -2,7 +2,8 @@ Ext.define('PHRS.view.Viewport', {
 	extend: 'Ext.container.Viewport',
 	
 	requires: [
-	    'Ext.layout.container.Border'
+	    'Ext.layout.container.Border',
+        'PHRS.view.hotel.GridList'
 	],
 	
 	layout: 'border',
@@ -34,7 +35,11 @@ Ext.define('PHRS.view.Viewport', {
 				region : 'center',
 				xtype : 'tabpanel', // TabPanel itself has no title
 				activeTab : 0, // First tab active by default
-			    html: 'test'
+			    items: [
+                    {
+                        xtype: 'hotel-gridlist'
+                    }
+                ]
 			}
 		];
 		

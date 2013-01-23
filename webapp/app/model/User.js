@@ -8,7 +8,8 @@ Ext.define('PHRS.model.User', {
         {name: 'email'},
         {name: 'firstName'},
         {name: 'lastName'},
-        {name: 'project'}
+        {name: 'project'},
+        {name: 'key', type: 'string', persist: false}
     ]
 
     // todo reservation as association

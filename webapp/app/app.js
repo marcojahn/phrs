@@ -3,14 +3,19 @@
         'Content-Type': 'application/json; charset=UTF-8'
     };
 
+    Ext.ns('PHRS.application');
+
     Ext.application({
         name: 'PHRS',
         autoCreateViewport: false,
         requires: ['PHRS.view.Viewport'],
 
-        //controllers: ['PHRS.controller.XY'],
+        controllers: ['PHRS.controller.Hotel'],
 
-        launch: function () {
+        onBeforeLaunch: function () {
+
+            Ext.apply(PHRS, {application: this});
+            var me = this; // todo refactor
 
             var loginForm;
             loginForm = Ext.create('Ext.window.Window', {
@@ -74,8 +79,17 @@
                                 params: submitJson,
                                 success: function (response) {
                                     Ext.Msg.alert('Success', response.responseText);
+
+                                    PHRS.application.SessionUser = Ext.create('PHRS.model.User', Ext.decode(response.responseText));
+
+                                    Ext.Ajax.defaultHeaders = Ext.apply(Ext.Ajax.defaultHeaders, {
+                                        'X-SecurityToken': PHRS.application.SessionUser.get('key')
+                                    });
+
                                     loginForm.close();
-                                    Ext.create('PHRS.view.Viewport');
+                                    //me.onBeforeLaunch.call(me);
+                                    //me.callParent();
+                                    Ext.app.Application.prototype.onBeforeLaunch.call(me);
                                 },
                                 failure: function () {
                                     labelField.setValue('MUHAHAHA... FAIL!');
@@ -83,34 +97,6 @@
                                     userNameField.enable();
                                 }
                             });
-
-                            /*form.submit({
-                             params: {
-                             userName:userNameField.getValue(),
-                             password:CryptoJS.SHA3(passwordField.getValue()).toString()
-                             },
-                             success: function (form, action) {
-                             Ext.Msg.alert('Success', action.result.msg);
-                             Ext.create('PHRS.view.Viewport');
-                             },
-                             failure: function (form, action) {
-                             switch (action.failureType) {
-                             case Ext.form.action.Action.CLIENT_INVALID:
-                             //Ext.Msg.alert('Failure', 'Form fields may not be submitted with invalid values');
-                             labelField.setValue('Form field my not be submitted with invalid values.');
-                             break;
-                             case Ext.form.action.Action.CONNECT_FAILURE:
-                             //Ext.Msg.alert('Failure', 'Ajax communication failed');
-                             labelField.setValue('Ajax communication failed.');
-                             break;
-                             case Ext.form.action.Action.SERVER_INVALID:
-                             //Ext.Msg.alert('Failure', action.result.msg);
-                             labelField.setValue(action.result.msg);
-                             }
-                             passwordField.enable();
-                             userNameField.enable();
-                             }
-                             })*/
 
                             passwordField.disable();
                             userNameField.disable();
@@ -127,6 +113,10 @@
                 }]
             }).show();
 
+        },
+
+        launch: function () {
+            Ext.create('PHRS.view.Viewport');
         }
     });
 })();
