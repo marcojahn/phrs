@@ -49,7 +49,7 @@ public class GlobalContext {
 			}
 		}
 
-		Long key = UUID.randomUUID().getLeastSignificantBits();
+		Long key = Math.abs(UUID.randomUUID().getLeastSignificantBits());
 		user.setKey(key);
 
 		Subject subject = new Subject(user);
