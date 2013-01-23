@@ -50,7 +50,6 @@ public class GlobalContext {
 		}
 
 		Long key = Math.abs(UUID.randomUUID().getLeastSignificantBits());
-		user.setKey(key);
 
 		Subject subject = new Subject(user);
 		subject.setKey(key);

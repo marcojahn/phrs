@@ -59,7 +59,9 @@ public class UserServiceImpl extends PhrsServiceImpl implements UserServiceLocal
 			}
 
 			Subject subject = this.globalContext.addUser(user);
-			user.setKey(subject.getKey());
+			if (subject != null && subject.getKey() != null) {
+				user.setKey(String.valueOf(subject.getKey()));
+			}
 
 			return user;
 

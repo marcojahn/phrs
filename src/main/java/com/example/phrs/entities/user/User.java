@@ -46,7 +46,7 @@ public class User extends PhrsEntity {
 
 	private Project project;
 
-	private Long key;
+	private String key;
 
 	private List<Reservation> reservationList;
 
@@ -212,7 +212,7 @@ public class User extends PhrsEntity {
 	 * @return the key
 	 */
 	@Transient
-	public Long getKey() {
+	public String getKey() {
 
 		return this.key;
 	}
@@ -223,7 +223,7 @@ public class User extends PhrsEntity {
 	 * @param key
 	 *            the key to set
 	 */
-	public void setKey(Long key) {
+	public void setKey(String key) {
 
 		this.key = key;
 	}
