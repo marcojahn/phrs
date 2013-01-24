@@ -123,7 +123,7 @@
 			</fileset>
 		</war>
 	</target>
-
+	
 	<!-- 
 	##################################################################################
 	##
@@ -142,16 +142,60 @@
 	<!-- 
 	##################################################################################
 	##
+	## Copies the EAR and exploded WAR to ${JBOSS_DEPLOY} directory.
+	##
+	##################################################################################
+	-->
+	<target name="deploy.jboss.all" depends="deploy.jboss.ear, deploy.jboss.devclient" description="Deploys EAR and Exploded WAR to jboss.">
+		
+	</target>
+	
+	<!-- 
+	##################################################################################
+	##
 	## Copies the EAR to ${JBOSS_DEPLOY} directory.
 	##
 	##################################################################################
 	-->
-	<target name="deploy.jboss" depends="ear" description="Deploys the enterprise archive to jboss." unless="${JBOSS_DEPLOY}">
+	<target name="deploy.jboss.ear" depends="ear" description="Deploys the enterprise archive to jboss." unless="${JBOSS_DEPLOY}">
 		<copy todir="${JBOSS_DEPLOY}">
 			<fileset dir="${dir.out.dist}">
 				<include name="${ant.project.name}.ear" />
 			</fileset>
 		</copy>
+	</target>
+	
+	<!-- 
+	##################################################################################
+	##
+	## Explodes the Web Archive (WAR) to JBoss Deploy Folder.
+	##
+	##################################################################################
+	-->
+	<target name="deploy.jboss.devclient" depends="war" description="Creates and deploys the exploded WAR file to jboss.">
+		
+		<property name="devclient" value="${ant.project.name}_dev.war" />
+		
+		<delete dir="${JBOSS_DEPLOY}/${devclient}" />
+		<delete file="${JBOSS_DEPLOY}/${devclient}.deployed" />
+		<delete file="${JBOSS_DEPLOY}/${devclient}.dodeploy" />
+		
+		<unzip dest="${JBOSS_DEPLOY}/${devclient}">
+			<fileset dir="${dir.out.dist}">
+				<include name="${ant.project.name}.war" />
+			</fileset>
+		</unzip>
+		
+		
+		<delete dir="${JBOSS_DEPLOY}/${devclient}/META-INF" />
+		<delete dir="${JBOSS_DEPLOY}/${devclient}/WEB-INF/classes" />
+		<delete file="${JBOSS_DEPLOY}/${devclient}/WEB-INF/beans.xml" />
+		<delete file="${JBOSS_DEPLOY}/${devclient}/WEB-INF/ejb-jar.xml" />
+		
+		<copy file="${dir.conf.dev}/jboss-web.xml" todir="${JBOSS_DEPLOY}/${devclient}/WEB-INF/" />
+		
+		<touch file="${JBOSS_DEPLOY}/${devclient}.dodeploy" />
+		
 	</target>
 
 	<!-- 
