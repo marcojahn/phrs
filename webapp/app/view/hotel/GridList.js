@@ -10,8 +10,15 @@ Ext.define('PHRS.view.hotel.GridList', {
     title: 'Hotelliste',
     store: 'Hotels',
     columns: [
-        { text: 'id',  dataIndex: 'id', editor: undefined },
-        { text: 'Hotel', dataIndex: 'name', flex: 1, editor: 'textfield' }
+        { text: 'ID',  dataIndex: 'id', editor: undefined },
+        { text: 'Name', dataIndex: 'name', flex: 1, editor: 'textfield' },
+        { text: 'Straﬂe', dataIndex: 'street', flex: 1, editor: 'textfield' },
+        { text: 'Hausnummer', dataIndex: 'streetNumber', editor: 'textfield' },
+        { text: 'E-Mail', dataIndex: 'email', flex: 1, editor: 'textfield', renderer: function (value) {
+        	if (value) {
+        		return Ext.String.format('<a href="mailto:{0}">{1}</a>', value, value);
+        	}
+        }}
     ],
 
     selType: 'rowmodel',
