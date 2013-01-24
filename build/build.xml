@@ -186,7 +186,6 @@
 			</fileset>
 		</unzip>
 		
-		
 		<delete dir="${JBOSS_DEPLOY}/${devclient}/META-INF" />
 		<delete dir="${JBOSS_DEPLOY}/${devclient}/WEB-INF/classes" />
 		<delete file="${JBOSS_DEPLOY}/${devclient}/WEB-INF/beans.xml" />
