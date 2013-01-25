@@ -3,6 +3,7 @@ Ext.define('PHRS.view.Viewport', {
 	
 	requires: [
 	    'Ext.layout.container.Border',
+        'PHRS.view.navigation.GridTree',
         'PHRS.view.hotel.GridList'
 	],
 	
@@ -15,8 +16,11 @@ Ext.define('PHRS.view.Viewport', {
 				region : 'west',
 				collapsible : true,
 				title : 'Navigation',
-				width : 150
+				width : 150,
+				
 				// could use a TreePanel or AccordionLayout for navigational items
+				xtype : 'navigation-gridtree'
+					
 			}, {
 				region : 'south',
 				title : 'South Panel',

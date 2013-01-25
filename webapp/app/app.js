@@ -10,7 +10,7 @@
         autoCreateViewport: false,
         requires: ['PHRS.view.Viewport'],
 
-        controllers: ['PHRS.controller.Hotel'],
+        controllers: ['PHRS.controller.Hotel', 'PHRS.controller.Navigation'],
 
         onBeforeLaunch: function () {
 
@@ -78,7 +78,6 @@
                                 url: '/phrs/rest/user/login/v1',
                                 params: submitJson,
                                 success: function (response) {
-                                    Ext.Msg.alert('Success', response.responseText);
 
                                     PHRS.application.SessionUser = Ext.create('PHRS.model.User', Ext.decode(response.responseText));
 
