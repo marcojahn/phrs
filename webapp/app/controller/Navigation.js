@@ -6,6 +6,5 @@ Ext.define('PHRS.controller.Navigation', {
 
     onLaunch: function () {
         console.log('controller navigation launch')
-        this.getNavigationsStore().load();
     }
 });

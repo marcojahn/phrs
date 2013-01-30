@@ -9,7 +9,7 @@ Ext.define('PHRS.store.Navigations', {
         type: 'memory'
     },
 
-    autoLoad: true;
+    autoLoad: true,
     
 	root: {
 		
@@ -19,7 +19,7 @@ Ext.define('PHRS.store.Navigations', {
 
 		children: [{
 	        name:'Hotelverwaltung',
-	        expanded: true,
+	        expanded: false,
 
 	        children: [{
 	            name: 'Neues Hotel',
@@ -29,9 +29,9 @@ Ext.define('PHRS.store.Navigations', {
 	        	name: 'Hotelverzeichnis',
 	        	leaf: true
 	        }]
-	    },{
+	    }, {
 	        name:'Benutzerverwaltung',
-	        expanded: true,
+	        expanded: false,
 
 	        children: [{
 	            name: 'Neuer Benutzer',

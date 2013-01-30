@@ -13,7 +13,7 @@ Ext.define('PHRS.view.navigation.GridTree', {
     collapsible: true,
     useArrows: false,
     rootVisible: false,
-    singleExpand: false,
+    singleExpand: true,
     	
     columns: [{
         xtype: 'treecolumn', 

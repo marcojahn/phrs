@@ -30,12 +30,6 @@ Ext.define('PHRS.view.Viewport', {
 				height : 100,
 				minHeight : 100
 			}, {
-				region : 'east',
-				title : 'East Panel',
-				collapsible : true,
-				split : true,
-				width : 150
-			}, {
 				region : 'center',
 				xtype : 'tabpanel', // TabPanel itself has no title
 				activeTab : 0, // First tab active by default
