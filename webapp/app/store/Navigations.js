@@ -18,11 +18,15 @@ Ext.define('PHRS.store.Navigations', {
 		expanded: true,
 
 		children: [{
+			name: 'Dashboard',
+			leaf: true
+		},{
 	        name:'Hotelverwaltung',
 	        expanded: false,
 
 	        children: [{
 	            name: 'Neues Hotel',
+	            icon: './img/hotel.png',
 	            leaf: true
 	        },
 	        {

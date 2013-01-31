@@ -28,7 +28,7 @@ Ext.define('PHRS.view.hotel.GridList', {
     selType: 'rowmodel',
     plugins: [
         Ext.create('Ext.grid.plugin.RowEditing', {
-            clicksToEdit: 1
+            clicksToEdit: 2
         })
     ]
 });

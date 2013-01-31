@@ -58,6 +58,13 @@ public class HotelServiceImpl extends PhrsServiceImpl implements HotelServiceLoc
 	public Hotel createHotel(Hotel hotel) throws ServiceException {
 
 		try {
+			if (hotel == null) {
+				throw new ServiceException("The Hotel 'null' cannot be persisted.");
+			}
+
+			hotel.setId(null);
+			hotel.setVersion(null);
+
 			this.entityManager.persist(hotel);
 
 			return hotel;
