@@ -5,7 +5,8 @@ Ext.define('PHRS.view.Viewport', {
 	    'Ext.layout.container.Border',
         'PHRS.view.navigation.GridTree',
         'PHRS.view.hotel.GridList',
-        'PHRS.view.hotel.HotelForm'
+        'PHRS.view.hotel.HotelForm',
+        'PHRS.view.main.Dashboard'
 	],
 	
 	layout: 'border',
@@ -24,17 +25,16 @@ Ext.define('PHRS.view.Viewport', {
 					
 			}, {
 				region : 'south',
-				title : 'South Panel',
-				collapsible : true,
-				html : 'Information goes here',
-				split : true,
-				height : 100,
-				minHeight : 100
+				title : '&copy; 2013, Marco Jahn & Nicolas Moser',
+				split : false
 			}, {
 				region : 'center',
 				xtype : 'tabpanel', // TabPanel itself has no title
-				activeTab : 1, // First tab active by default
+				activeTab : 0, // First tab active by default
 			    items: [
+					{
+					    xtype: 'main-dashboard'
+					},
                     {
                         xtype: 'hotel-gridlist'
                     },

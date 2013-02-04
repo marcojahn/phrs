@@ -36,7 +36,6 @@ Ext.define('PHRS.controller.Hotel', {
 		});
 	
 		this.getHotelsStore().add(hotel);
-		this.getHotelsStore().load();
 	}
 
 });
