@@ -41,7 +41,9 @@ Ext.define('PHRS.view.Viewport', {
                         xtype: 'hotel-gridlist'
                     },
                     {
-                    	xtype: 'hotel-hotelform'
+                        xtype: 'container',
+                        title: 'neues Hotel',
+                        items: [{xtype: 'hotel-hotelform'}]
                     }
                 ],
                 

@@ -46,7 +46,12 @@
                         {
                             fieldLabel: 'Username:',
                             name: 'tmp_userName',
-                            allowBlank: false
+                            allowBlank: false,
+                            listeners: {
+                                afterrender: function(field) {
+                                    field.focus();
+                                }
+                            }
                         },
                         {
                             fieldLabel: 'Password:',
