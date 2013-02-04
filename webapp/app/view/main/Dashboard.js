@@ -51,6 +51,7 @@ Ext.define('PHRS.view.main.Dashboard', {
         },
         items: [{
             title: 'Reservation Overview',
+            xtype: 'main-reservationchart',
             margins: '0 0 5 0'
         }, {
             title: 'Hotel Overview',
