@@ -75,7 +75,7 @@
                             }));
 
                             Ext.Ajax.request({
-                                url: '/phrs/rest/user/login/v1',
+                                url: 'http://localhost:8080/phrs/rest/user/login/v1',
                                 params: submitJson,
                                 success: function (response) {
                                     Ext.Msg.alert('Success', response.responseText);
