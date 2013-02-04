@@ -3,7 +3,9 @@ Ext.define('PHRS.view.Viewport', {
 	
 	requires: [
 	    'Ext.layout.container.Border',
-        'PHRS.view.hotel.GridList'
+        'PHRS.view.navigation.GridTree',
+        'PHRS.view.hotel.GridList',
+        'PHRS.view.hotel.HotelForm'
 	],
 	
 	layout: 'border',
@@ -15,8 +17,11 @@ Ext.define('PHRS.view.Viewport', {
 				region : 'west',
 				collapsible : true,
 				title : 'Navigation',
-				width : 150
+				width : 150,
+				
 				// could use a TreePanel or AccordionLayout for navigational items
+				xtype : 'navigation-gridtree'
+					
 			}, {
 				region : 'south',
 				title : 'South Panel',
@@ -26,18 +31,15 @@ Ext.define('PHRS.view.Viewport', {
 				height : 100,
 				minHeight : 100
 			}, {
-				region : 'east',
-				title : 'East Panel',
-				collapsible : true,
-				split : true,
-				width : 150
-			}, {
 				region : 'center',
 				xtype : 'tabpanel', // TabPanel itself has no title
-				activeTab : 0, // First tab active by default
+				activeTab : 1, // First tab active by default
 			    items: [
                     {
                         xtype: 'hotel-gridlist'
+                    },
+                    {
+                    	xtype: 'hotel-hotelform'
                     }
                 ]
 			}
