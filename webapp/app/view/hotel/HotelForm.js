@@ -21,30 +21,32 @@ Ext.define('PHRS.view.hotel.HotelForm', {
     },
     
 	buildItems: function () {
-		return [{
-    		fieldLabel: 'Name',
-    		name: 'name',
-    		
-    		allowBlank: false,
-    		
-    		xtype: 'textfield'
-    	}];
-	},
+        return [
+            {
+                fieldLabel:'Name',
+                name:'name',
+                allowBlank:false,
+                xtype:'textfield'
+            },
+            {
+                fieldLabel: 'Straße',
+                name: 'street',
+                allowBlank: false,
+                xtype: 'textfield'
+            }
+        ];
+    },
     
     buildButtons: function () {
     	return [{
     		text: 'Speichern',
     		formBind: true,
     		disabled: true,
-    		
     		action: 'saveHotel'
     		
     	}, {
     		text: 'Abbrechen',
-    		
-    		handler: function () {
-    			alert('Abbrechen');
-    		}
+    		action: 'resetHotel'
     	}];
     	
     }

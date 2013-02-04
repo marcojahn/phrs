@@ -13,30 +13,30 @@ Ext.define('PHRS.controller.Hotel', {
     stores: ['Hotels'],
 
     onLaunch: function () {
-        console.log('controller hotel launch')
         this.getHotelsStore().load();
         
         this.control({
         	'#hotel-hotelform button[action=saveHotel]': {
         		click: this.saveHotel
-        	}
-        })
+        	},
+            '#hotel-hotelform button[aciton=resetHotel]': {
+                click: this.resetHotel
+            }
+        });
+
+        this.resetHotel();
+
     },
 
 	saveHotel: function() {
+        var record = this.getHotelForm().getForm().getRecord();
+        this.getHotelForm().getForm().updateRecord(record);
+        this.getHotelsStore().add(record);
+	},
 
-        console.log('save Hotel')
-
-        var form = this.getHotelForm();
-        
-		var hotel = Ext.create('PHRS.model.Hotel', {
-			id: null,
-			version: null,
-			name: form.getForm().findField('name').getValue()
-		});
-	
-		this.getHotelsStore().add(hotel);
-		this.getHotelsStore().load();
-	}
+    resetHotel: function () {
+        var record = this.getHotelsStore().createRecordEmpty();
+        this.getHotelForm().getForm().loadRecord(record);
+    }
 
 });

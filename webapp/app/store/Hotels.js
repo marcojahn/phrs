@@ -16,5 +16,9 @@ Ext.define('PHRS.store.Hotels', {
         }
     },
 
-    autoSync: true
+    autoSync: true,
+
+    createRecordEmpty: function () {
+        return Ext.create('PHRS.model.Hotel');
+    }
 });
