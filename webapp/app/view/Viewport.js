@@ -18,7 +18,7 @@ Ext.define('PHRS.view.Viewport', {
 				region : 'west',
 				collapsible : true,
 				title : 'Navigation',
-				width : 150,
+				width : 250,
 				
 				// could use a TreePanel or AccordionLayout for navigational items
 				xtype : 'navigation-gridtree'
@@ -31,7 +31,8 @@ Ext.define('PHRS.view.Viewport', {
 				region : 'center',
 				xtype : 'tabpanel', // TabPanel itself has no title
 				activeTab : 0, // First tab active by default
-			    items: [
+			    
+				items: [
 					{
 					    xtype: 'main-dashboard'
 					},
@@ -41,7 +42,11 @@ Ext.define('PHRS.view.Viewport', {
                     {
                     	xtype: 'hotel-hotelform'
                     }
-                ]
+                ],
+                
+                defaults: {
+                	closable: true
+                }
 			}
 		];
 		

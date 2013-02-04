@@ -33,10 +33,10 @@ Ext.define('PHRS.view.main.Dashboard', {
         },
         
         items: [{
-            title: 'User Contact Information',
+            title: 'Create New Reservation',
             margins: '0 0 5 0'
         }, {
-            title: 'Session Log'
+            title: 'History'
         }]
     }, {
         xtype: 'container',
@@ -50,10 +50,10 @@ Ext.define('PHRS.view.main.Dashboard', {
             frame: true
         },
         items: [{
-            title: 'Account Privileges',
+            title: 'Reservation Overview',
             margins: '0 0 5 0'
         }, {
-            title: 'Purchase History',
+            title: 'Hotel Overview',
         }]
     }]
 
