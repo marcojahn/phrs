@@ -4,6 +4,7 @@ Ext.define('PHRS.view.main.Dashboard', {
     id: 'main-dashboard',
 
     requires: [
+       'PHRS.view.reservation.ReservationForm',
        'PHRS.view.reservation.ChartPanel'
    ],
     
@@ -38,6 +39,7 @@ Ext.define('PHRS.view.main.Dashboard', {
         
         items: [{
             title: 'Create New Reservation',
+            xtype: 'reservation-reservationform',
             margins: '0 0 5 0'
         }, {
             title: 'History'
