@@ -9,6 +9,7 @@ Ext.define('PHRS.view.hotel.GridList', {
 
     title: 'Hotelliste',
     store: 'Hotels',
+
     columns: [
         { text: 'ID', dataIndex: 'id', editor: undefined },
         { text: 'Name', dataIndex: 'name', flex: 1, editor: 'textfield' },
