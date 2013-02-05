@@ -2,6 +2,10 @@ Ext.define('PHRS.view.main.Dashboard', {
     extend: 'Ext.panel.Panel',
 
     id: 'main-dashboard',
+
+    requires: [
+       'PHRS.view.reservation.ChartPanel'
+   ],
     
     alias: 'widget.main-dashboard',
     
@@ -51,7 +55,7 @@ Ext.define('PHRS.view.main.Dashboard', {
         },
         items: [{
             title: 'Reservation Overview',
-            xtype: 'main-reservationchart',
+            xtype: 'reservation-chartpanel',
             margins: '0 0 5 0'
         }, {
             title: 'Hotel Overview',

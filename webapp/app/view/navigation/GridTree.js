@@ -10,10 +10,10 @@ Ext.define('PHRS.view.navigation.GridTree', {
     title: 'Navigation',
     store: 'Navigations',
     
-    collapsible: true,
-    useArrows: false,
+    collapsible: false,
+    useArrows: true,
     rootVisible: false,
-    singleExpand: true,
+    singleExpand: false,
     	
     columns: [{
         xtype: 'treecolumn', 

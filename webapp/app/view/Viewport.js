@@ -6,7 +6,6 @@ Ext.define('PHRS.view.Viewport', {
         'PHRS.view.navigation.GridTree',
         'PHRS.view.hotel.GridList',
         'PHRS.view.hotel.HotelForm',
-        'PHRS.view.main.ReservationChart',
         'PHRS.view.main.Dashboard'
 	],
 	
