@@ -21,12 +21,12 @@ import com.example.phrs.ejb.api.reservation.ReservationService;
 import com.example.phrs.entities.hotel.Reservation;
 
 /**
- * ReservationRestServiceV1
+ * ReservationV1
  * 
  * @author Nicolas Moser
  */
 @Path("/reservation/v1")
-public class ReservationRestServiceV1 {
+public class ReservationV1 {
 
 	@Inject
 	private ReservationService reservationService;

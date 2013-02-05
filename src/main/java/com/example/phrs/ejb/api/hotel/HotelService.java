@@ -24,6 +24,6 @@ public interface HotelService extends PhrsService {
 
 	Hotel updateHotel(Hotel hotel) throws ServiceException;
 
-	Hotel removeHotel(Hotel hotel) throws ServiceException;
+	Hotel removeHotel(Long hotelId) throws ServiceException;
 
 }

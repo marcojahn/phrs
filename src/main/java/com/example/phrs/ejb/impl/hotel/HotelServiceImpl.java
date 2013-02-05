@@ -85,7 +85,9 @@ public class HotelServiceImpl extends PhrsServiceImpl implements HotelServiceLoc
 	}
 
 	@Override
-	public Hotel removeHotel(Hotel hotel) throws ServiceException {
+	public Hotel removeHotel(Long hotelId) throws ServiceException {
+
+		final Hotel hotel = this.findHotel(hotelId);
 
 		try {
 			this.entityManager.remove(hotel);
