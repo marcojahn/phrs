@@ -25,7 +25,7 @@ Ext.define('PHRS.view.Viewport', {
 					
 			}, {
 				region : 'south',
-				title : '&copy; 2013, Marco Jahn & Nicolas Moser',
+				title : '&copy; 2013 Marco Jahn & Nicolas Moser',
 				split : false
 			}, {
 				region : 'center',

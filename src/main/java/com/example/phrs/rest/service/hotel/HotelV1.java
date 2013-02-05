@@ -21,12 +21,12 @@ import com.example.phrs.ejb.api.hotel.HotelService;
 import com.example.phrs.entities.hotel.Hotel;
 
 /**
- * HotelRestServiceV1
+ * HotelV1
  * 
  * @author Nicolas Moser
  */
 @Path("/hotel/v1")
-public class HotelRestServiceV1 {
+public class HotelV1 {
 
 	@Inject
 	private HotelService hotelService;
@@ -66,10 +66,10 @@ public class HotelRestServiceV1 {
 	}
 
 	@DELETE
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Hotel removeHotel(Hotel hotel) throws ServiceException {
+	public Hotel removeHotel(@PathParam("id") Long id) throws ServiceException {
 
-		return this.hotelService.removeHotel(hotel);
+		return this.hotelService.removeHotel(id);
 	}
 }

@@ -6,9 +6,9 @@ Ext.define('PHRS.store.Hotels', {
     storeId: 'Hotels',
 
     proxy: {
-        type: 'ajax',
+        type: 'rest',
         url: 'http://localhost:8080/phrs/rest/hotel/v1',
-        actionMethods: {
+        /*actionMethods: {
             create: 'POST',
             read: 'GET',
             update: 'PUT',

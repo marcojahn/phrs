@@ -28,7 +28,7 @@ import com.example.phrs.entities.user.User;
  * @author Nicolas Moser
  */
 @Path("/user")
-public class UserRestServiceV1 {
+public class UserV1 {
 
 	@Inject
 	private UserService userService;
