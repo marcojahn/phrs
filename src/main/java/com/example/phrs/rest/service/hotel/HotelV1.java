@@ -58,6 +58,7 @@ public class HotelV1 {
 	}
 
 	@PUT
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Hotel updateHotel(Hotel hotel) throws ServiceException {

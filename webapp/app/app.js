@@ -1,8 +1,9 @@
 (function () {
     Ext.Ajax.defaultHeaders = {
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept-Charset': 'UTF-8'
     };
-
+    
     Ext.ns('PHRS.application');
 
     Ext.application({
@@ -10,7 +11,7 @@
         autoCreateViewport: false,
         requires: ['PHRS.view.Viewport'],
 
-        controllers: ['PHRS.controller.Hotel', 'PHRS.controller.Navigation'],
+        controllers: ['PHRS.controller.Hotel', 'PHRS.controller.Navigation', 'PHRS.controller.Reservation'],
 
         onBeforeLaunch: function () {
 

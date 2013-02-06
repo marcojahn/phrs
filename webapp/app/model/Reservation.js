@@ -4,8 +4,8 @@ Ext.define('PHRS.model.Reservation', {
     fields: [
         {name: 'date', type: 'date'},
         {name: 'hotelChanged', type: 'boolean'},
-        {name: 'comment'},
-        {name: 'status'} // reservation status
+        {name: 'comment', type: 'string', useNull: true},
+        {name: 'status', type: 'string', defaultValue: null, useNull: true} // reservation status
     ],
 
     associations: [
