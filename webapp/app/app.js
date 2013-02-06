@@ -3,7 +3,7 @@
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept-Charset': 'UTF-8'
     };
-    
+
     Ext.ns('PHRS.application');
 
     Ext.application({
@@ -11,9 +11,16 @@
         autoCreateViewport: false,
         requires: ['PHRS.view.Viewport'],
 
-        controllers: ['PHRS.controller.Hotel', 'PHRS.controller.Navigation', 'PHRS.controller.Reservation'],
+        controllers: [
+            'PHRS.controller.Hotel',
+            'PHRS.controller.Navigation',
+            'PHRS.controller.Reservation'
+        ],
 
         onBeforeLaunch: function () {
+
+            // apply cookie provider
+            Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 
             Ext.apply(PHRS, {application: this});
             var me = this; // todo refactor
@@ -52,13 +59,15 @@
                                 afterrender: function(field) {
                                     field.focus();
                                 }
-                            }
+                            },
+                            value: Ext.state.Manager.get('username', '')
                         },
                         {
                             fieldLabel: 'Password:',
                             name: 'tmp_password',
                             allowBlank: false,
-                            inputType: 'password'
+                            inputType: 'password',
+                            value: Ext.state.Manager.get('password', '')
                         },
                         {
                             xtype: 'displayfield',
@@ -71,6 +80,9 @@
                             userNameField = form.findField('tmp_userName'),
                             passwordField = form.findField('tmp_password'),
                             labelField = form.findField('errorfield'); // todo rewrite if moved to MVC structure
+
+                            Ext.state.Manager.set('username', userNameField.getValue());
+                            Ext.state.Manager.set('password', passwordField.getValue());
 
                         if (form.isValid()) {
                             // try/catch
