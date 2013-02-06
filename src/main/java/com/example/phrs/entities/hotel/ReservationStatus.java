@@ -3,6 +3,8 @@
  */
 package com.example.phrs.entities.hotel;
 
+import org.codehaus.jackson.annotate.JsonValue;
+
 /**
  * ReservationStatus
  * 
@@ -10,14 +12,32 @@ package com.example.phrs.entities.hotel;
  */
 public enum ReservationStatus {
 
-	CREATED,
+	CREATED("CREATED"),
 
-	REQUESTED,
+	REQUESTED("REQUESTED"),
 
-	CONFIRMED,
+	CONFIRMED("CONFIRMED"),
 
-	CANCELATION_REQUESTED,
+	CANCELATION_REQUESTED("CANCELATION_REQUESTED"),
 
-	CANCELED
+	CANCELLED("CANCELLED");
+
+	private ReservationStatus(String value) {
+
+		this.value = value;
+	}
+
+	private String value;
+
+	/**
+	 * Getter for the value.
+	 * 
+	 * @return the value
+	 */
+	@JsonValue
+	public String value() {
+
+		return this.value;
+	}
 
 }

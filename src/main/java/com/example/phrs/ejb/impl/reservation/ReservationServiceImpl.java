@@ -5,6 +5,7 @@ package com.example.phrs.ejb.impl.reservation;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.example.phrs.base.exception.PersistenceException;
@@ -21,6 +22,7 @@ import com.example.phrs.entities.hotel.Reservation;
  * 
  * @author Nicolas Moser
  */
+@Stateless
 public class ReservationServiceImpl extends PhrsServiceImpl implements ReservationServiceLocal,
 		ReservationServiceRemote {
 

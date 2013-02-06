@@ -24,7 +24,7 @@ Ext.define('PHRS.view.reservation.ReservationForm', {
 
         this.items = this.buildItems();
 
-//        this.buttons = this.buildButtons();
+        this.buttons = this.buildButtons();
 
         this.callParent(arguments);
     },
@@ -49,26 +49,29 @@ Ext.define('PHRS.view.reservation.ReservationForm', {
                 queryMode: 'local',
                 displayField: 'name',
                 valueVield: 'name'
+            },
+            {
+                name: 'comment',
+                fieldLabel: 'Kommentar',
+                xtype: 'textarea',
+                allowBlank: true,
+                msgTarget: 'side'
             }
         ]
-    }
+    },
 
-//    buildButtons: function () {
-//        return [
-//            {
-//                text: 'Speichern',
-//                formBind: true,
-//                disabled: true,
-//                action: 'saveReservation'
-//
-//            },
-//            {
-//                text: 'Abbrechen',
-//                action: 'resetReservation'
-//            }
-//        ];
-//
-//    }
+    buildButtons: function () {
+        return [
+            {
+                text: 'Anfragen',
+                formBind: true,
+                disabled: true,
+                action: 'saveReservation'
+
+            }
+        ];
+
+    }
 
 })
 ;
