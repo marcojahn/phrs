@@ -21,6 +21,13 @@ Ext.define('PHRS.view.navigation.GridTree', {
         flex: 2,
         sortable: false,
         dataIndex: 'name'
-    }]
+    }],
+
+    listeners: {
+        itemclick: function (me, record, item) {
+            console.log('selected record: ' + record.get('menuId'));
+            // TODO tabchange/create
+        }
+    }
     
 });

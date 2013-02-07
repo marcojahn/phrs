@@ -19,7 +19,8 @@ Ext.define('PHRS.store.Navigations', {
 
 		children: [{
 			name: 'Dashboard',
-			leaf: true
+			leaf: true,
+            menuId: 'dashboard'
 		},{
 	        name:'Hotelverwaltung',
 	        expanded: false,
@@ -27,11 +28,13 @@ Ext.define('PHRS.store.Navigations', {
 	        children: [{
 	            name: 'Neues Hotel',
 	            icon: './img/hotel.png',
-	            leaf: true
+	            leaf: true,
+                menuId: 'createHotel'
 	        },
 	        {
 	        	name: 'Hotelverzeichnis',
-	        	leaf: true
+	        	leaf: true,
+                menuId: 'listHotels'
 	        }]
 	    }, {
 	        name:'Benutzerverwaltung',
@@ -39,11 +42,13 @@ Ext.define('PHRS.store.Navigations', {
 
 	        children: [{
 	            name: 'Neuer Benutzer',
-	            leaf: true
+	            leaf: true,
+                menuId: 'createUser'
 	        },
 	        {
 	        	name: 'Benutzerverzeichnis',
-	        	leaf: true
+	        	leaf: true,
+                menuId: 'listUsers'
 	        }]
 	    }]
 	}
