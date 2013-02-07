@@ -48,7 +48,7 @@ Ext.define('PHRS.view.reservation.ReservationForm', {
                 store: 'Hotels',
                 queryMode: 'local',
                 displayField: 'name',
-                valueVield: 'name'
+                valueField: 'id'
             },
             {
                 name: 'comment',

@@ -8,6 +8,9 @@ Ext.define('PHRS.store.Reservations', {
     proxy: {
         type: 'rest',
         url: 'http://localhost:8080/phrs/rest/reservation/v1',
+        writer: {
+            type: 'json2'
+        }
     },
 
     autoSync: true,

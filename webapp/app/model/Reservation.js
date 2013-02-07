@@ -14,7 +14,7 @@ Ext.define('PHRS.model.Reservation', {
             model: 'PHRS.model.Hotel',
             name: 'hotel',
             associationKey: 'hotel',
-            autoLoad: true,
+            autoLoad: false,
             foreignKey: 'id',
             getterName: 'getHotel',
             setterName: 'setHotel'

@@ -14,9 +14,12 @@
                 enabled: true,
                 disableCaching: false,
                 paths: {
-                    'PHRS': '../'
+                    'PHRS': 'app'
                 }
             });
+
+            // TODO handle require management better :)
+            Ext.Loader.syncRequire('PHRS.common.data.writer.Json');
         </script>
 
 		<script type="text/javascript" src="app/app.js"></script>

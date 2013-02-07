@@ -38,6 +38,15 @@ Ext.define('PHRS.controller.Reservation', {
 	saveReservation: function() {
         var record = this.getReservationForm().getForm().getRecord();
         this.getReservationForm().getForm().updateRecord(record);
+
+        var submitValue = this.getReservationForm().getForm().findField('hotel').getSubmitValue();
+        console.log('selected hotel id: ' + submitValue);
+
+        // TODO quick hack
+        var hotelRecord = Ext.StoreManager.get('Hotels').getById(submitValue);
+
+        record.setHotel(hotelRecord);
+
         this.getReservationsStore().add(record);
 	}
 
